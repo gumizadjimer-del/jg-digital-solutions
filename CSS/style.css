@@ -117,7 +117,12 @@ body {
 .hero {
     width: 100%;
     min-height: 620px;
-
+    
+    background-image: url('YOUR-BACKGROUND-IMAGE.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
     background-color: #000000;
 
     display: flex;

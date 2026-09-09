@@ -1,10 +1,15 @@
+
+<?php
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JG Digital Solutions</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="CSS\style.css">
 </head>
 
 <body>
@@ -17,10 +22,10 @@
 
 
             <nav class="navigation">
-                <a href="#">HOME</a>
-                <a href="#">SERVICES</a>
-                <a href="#">OUR WORK</a>
-                <a href="#">CONTACT</a>
+                <a href="#home">HOME</a>
+                <a href="#services">SERVICES</a>
+                <a href="#work">OUR WORK</a>
+                <a href="#contact">CONTACT</a>
             </nav>
 
         </div>
@@ -29,15 +34,14 @@
 
     <!-- MAIN BACKGROUND -->
     <main class="main-content">
-        <!-- Other website sections will go here later -->
          <!-- MAIN BANNER -->
-<section class="hero">
+<section class="hero" id = "home">
 
     <div class="hero-content">
 
         <div class="hero-text">
 
-            <p class="hero-label">JNG DIGITAL SOLUTIONS</p>
+            <p class="hero-label">JG DIGITAL SOLUTIONS</p>
 
             <h1>
                 TURNING IDEAS INTO
@@ -236,7 +240,7 @@
     <div class="contact-container">
 
         <!-- LEFT: CONTACT FORM -->
-        <form class="contact-form">
+        <form class="contact-form" method="POST" action="process_contact.php">
 
             <label for="contact-name">NAME</label>
             <input type="text" id="contact-name" name="name">
@@ -246,6 +250,8 @@
 
             <label for="contact-message">MESSAGE</label>
             <textarea id="contact-message" name="message"></textarea>
+
+            <button type="submit">SEND MESSAGE</button>
 
         </form>
 
@@ -265,18 +271,18 @@
 
             <div class="contact-detail">
                 <img src="YOUR-EMAIL-ICON.png" alt="Email">
-                <span>your-email@example.com</span>
+                <span>JGdigitalsolution@gmail.com</span>
             </div>
 
             <div class="contact-detail">
                 <img src="YOUR-PHONE-ICON.png" alt="Phone">
-                <span>+63 999 999 9999</span>
+                <span>+63 939 834 4760</span>
             </div>
 
             <div class="contact-detail">
                 <img src="YOUR-LOCATION-ICON.png" alt="Location">
                 <span>
-                    Your City, Your Province,<br>
+                    Dumaguete City, Negros Oriental, Philippines<br>
                     Philippines
                 </span>
             </div>
@@ -307,6 +313,6 @@
 
         </div>
     </footer>
-
+<script src="JS\script.js"></script>
 </body>
 </html>
