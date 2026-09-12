@@ -1,13 +1,47 @@
-# XAMPP / local files
-xampp/
+# ================================
+# XAMPP / PHP
+# ================================
+
+# PHP error logs
 *.log
 
-# Environment / sensitive files
+# Temporary files
+*.tmp
+*.temp
+
+# ================================
+# Environment / Secrets
+# ================================
+
 .env
+.env.*
+!.env.example
 
-# IDE
+# ================================
+# IDE / Editor
+# ================================
+
 .vscode/
+.idea/
 
-# OS files
+# ================================
+# Windows
+# ================================
+
 Thumbs.db
-.DS_Store
+desktop.ini
+
+# ================================
+# OS / Temporary files
+# ================================
+
+*.swp
+*.swo
+*.bak
+
+# ================================
+# Composer (if used later)
+# ================================
+
+/vendor/
+composer.phar
