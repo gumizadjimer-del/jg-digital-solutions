@@ -1,10 +1,17 @@
 <?php
 
 require_once "config/database.php";
+require_once "config/security.php";
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     header("Location: index.php");
     exit;
+}
+
+$token = $_POST["csrf_token"] ?? "";
+
+if (!verifyCsrfToken($token)) {
+    die("Invalid security token.");
 }
 
 $name = trim($_POST["name"] ?? "");

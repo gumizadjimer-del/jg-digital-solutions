@@ -1,5 +1,6 @@
-
 <?php
+
+require_once "config/security.php";
 
 ?>
 
@@ -18,7 +19,7 @@
     <header class="header">
         <div class="header-container">
 
-            <img src="Asset 1.png" class="logo" alt="JG Digital Solutions Logo">
+            <img src="image/Asset 1.png" class="logo" alt="JG Digital Solutions Logo">
 
 
             <nav class="navigation">
@@ -26,6 +27,7 @@
                 <a href="#services">SERVICES</a>
                 <a href="#work">OUR WORK</a>
                 <a href="#contact">CONTACT</a>
+                <a href="admin/login.php">LOGIN</a>
             </nav>
 
         </div>
@@ -242,14 +244,20 @@
         <!-- LEFT: CONTACT FORM -->
         <form class="contact-form" method="POST" action="process_contact.php">
 
+            <input
+                type="hidden"
+                name="csrf_token"
+                value="<?php echo htmlspecialchars(getCsrfToken()); ?>"
+            >
+
             <label for="contact-name">NAME</label>
-            <input type="text" id="contact-name" name="name">
+            <input type="text" id="contact-name" name="name" id="contact-name" maxlength="100" required>
 
             <label for="contact-email">EMAIL</label>
-            <input type="email" id="contact-email" name="email">
+            <input type="email" id="contact-email" name="email" id="contact-email" maxlength="150" required>
 
             <label for="contact-message">MESSAGE</label>
-            <textarea id="contact-message" name="message"></textarea>
+            <textarea id="contact-message" name="message" id="contact-message" maxlength="2000" required></textarea>
 
             <button type="submit">SEND MESSAGE</button>
 
@@ -301,7 +309,7 @@
     <footer class="footer">
         <div class="footer-container">
 
-            <img src="Asset 1.png" class="footer-logo" alt="JG Digital Solutions Logo">
+            <img src="image/Asset 1.png" class="footer-logo" alt="JG Digital Solutions Logo">
 
             <p>© 2026 JG Digital Solutions. All rights reserved.</p>
 
