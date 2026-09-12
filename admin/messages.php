@@ -4,18 +4,12 @@ session_start();
 
 require_once "../config/database.php";
 require_once "../config/security.php";
+require_once "../config/admin_auth.php";
+
+requireAdmin();
 
 // Check if user is logged in
-if (!isset($_SESSION["user_id"])) {
-    header("Location: login.php");
-    exit;
-}
 
-// Only admins can access this page
-if ($_SESSION["role"] !== "admin") {
-    echo "Access denied. Admin access only.";
-    exit;
-}
 
 // Delete message
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete_message"])) {
@@ -35,12 +29,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete_message"])) {
 
     $stmt->bind_param("i", $id);
 
-    $stmt->execute();
+    if ($stmt->execute()) {
 
     $stmt->close();
 
     header("Location: messages.php");
     exit;
+
+        } else {
+
+            $stmt->close();
+
+            exit("Something went wrong. Please try again later.");
+        }
 }
 
 // Get all messages
@@ -50,6 +51,9 @@ $sql = "SELECT id, name, email, message, created_at
 
 $result = $conn->query($sql);
 
+if (!$result) {
+    exit("Something went wrong. Please try again later.");
+}
 ?>
 
 <!DOCTYPE html>

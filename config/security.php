@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 // Create a CSRF token
 function getCsrfToken()
 {

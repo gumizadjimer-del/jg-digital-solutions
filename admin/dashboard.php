@@ -3,27 +3,26 @@
 session_start();
 
 require_once "../config/database.php";
+require_once "../config/security.php";
+require_once "../config/admin_auth.php";
 
+requireAdmin();
 
-// Check if user is logged in
-if (!isset($_SESSION["user_id"])) {
-
-    header("Location: login.php");
-    exit;
-}
-
-if ($_SESSION["role"] !== "admin") {
-
-    echo "Access denied. Admin access only.";
-    exit;
-}
-
+// Count users
 $result = $conn->query("SELECT COUNT(*) AS total FROM users");
+
+if (!$result) {
+    exit("Something went wrong. Please try again later.");
+}
 
 $userCount = $result->fetch_assoc()["total"];
 
 // Count messages
 $result = $conn->query("SELECT COUNT(*) AS total FROM messages");
+
+if (!$result) {
+    exit("Something went wrong. Please try again later.");
+}
 
 $messageCount = $result->fetch_assoc()["total"];
 

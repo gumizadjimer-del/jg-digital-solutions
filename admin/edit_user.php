@@ -4,18 +4,9 @@ session_start();
 
 require_once "../config/database.php";
 require_once "../config/security.php";
+require_once "../config/admin_auth.php";
 
-// Check if user is logged in
-if (!isset($_SESSION["user_id"])) {
-    header("Location: login.php");
-    exit;
-}
-
-// Only admins can access this page
-if ($_SESSION["role"] !== "admin") {
-    echo "Access denied. Admin access only.";
-    exit;
-}
+requireAdmin();
 
 // Check if user ID exists
 if (!isset($_GET["id"])) {
@@ -42,9 +33,8 @@ $result = $stmt->get_result();
 
 if ($result->num_rows !== 1) {
 
-    echo "User not found.";
-    exit;
-
+    http_response_code(404);
+    exit("User not found.");
 }
 
 $user = $result->fetch_assoc();

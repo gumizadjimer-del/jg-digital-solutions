@@ -4,17 +4,10 @@ session_start();
 
 require_once "../config/database.php";
 require_once "../config/security.php";
+require_once "../config/admin_auth.php";
 
-// Only admins can access this page
-if (!isset($_SESSION["user_id"])) {
-    header("Location: login.php");
-    exit;
-}
+requireAdmin();
 
-if ($_SESSION["role"] !== "admin") {
-    echo "Access denied. Admin access only.";
-    exit;
-}
 
 // Delete user
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete_user"])) {
@@ -40,12 +33,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete_user"])) {
 
     $stmt->bind_param("i", $id);
 
-    $stmt->execute();
+    if ($stmt->execute()) {
 
     $stmt->close();
 
     header("Location: users.php");
     exit;
+
+        } else {
+
+            $stmt->close();
+
+            exit("Something went wrong. Please try again later.");
+        }
 }
 
 // Get all users
@@ -55,6 +55,9 @@ $sql = "SELECT id, username, email, role, created_at
 
 $result = $conn->query($sql);
 
+if (!$result) {
+    exit("Something went wrong. Please try again later.");
+}
 ?>
 
 <!DOCTYPE html>
