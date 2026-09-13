@@ -15,7 +15,7 @@ html {
 body {
     background-color: #000000;
     color: #FFFFFF;
-    font-family: Arial, sans-serif;
+    font-family: "Myriad Pro", Myriad, "Helvetica Neue", Helvetica, Arial, sans-serif;
     min-height: 100vh;
 }
 
@@ -118,7 +118,7 @@ body {
     width: 100%;
     min-height: 620px;
     
-    background-image: url('YOUR-BACKGROUND-IMAGE.jpg');
+    background-image: url('../image/Asset 2.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -339,6 +339,7 @@ body {
 
 .services-title span {
     position: relative;
+    display: inline-block;
 }
 
 .services-title span::after {
@@ -346,8 +347,10 @@ body {
 
     position: absolute;
 
-    left: 0;
+    left: 25%;
     bottom: -7px;
+
+    transform: translateX(-50%);
 
     width: 100%;
     height: 3px;
@@ -559,8 +562,6 @@ body {
 
     padding: 25px 50px 45px;
 
-
-
     border-top: 1px solid #302C2D;
 }
 
@@ -702,46 +703,6 @@ body {
 }
 
 
-/* =========================
-   SHOW MORE
-========================= */
-
-.show-more {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 7px;
-
-    width: fit-content;
-
-    margin: 65px auto 0;
-
-    color: #FFFFFF;
-
-    text-decoration: none;
-
-    font-size: 13px;
-    font-weight: 400;
-
-    transition: color 0.3s ease;
-}
-
-.show-more:hover {
-    color: #FAAF43;
-}
-
-.show-more-arrow {
-    color: #777777;
-
-    font-size: 22px;
-    line-height: 10px;
-
-    position: relative;
-    top: -2px;
-}
-
 
 /* =========================
    RESPONSIVE
@@ -796,10 +757,13 @@ body {
     min-height: 370px;
     margin: 0 auto;
     padding: 25px 38px 50px;
-
+    
     background-color: #231F20;
 
     color: #FFFFFF;
+
+
+
 }
 
 
@@ -906,6 +870,15 @@ body {
 .contact-form input:focus,
 .contact-form textarea:focus {
     border-color: #FFFFFF;
+}
+
+#send_message {
+    background-color: #FAAF43;
+    color: #231F20;
+    border: none;
+    padding: 12px 25px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 
@@ -1111,3 +1084,111 @@ body {
     }
 
 }
+
+/* =================================
+   AUTHENTICATION PAGES
+================================= */
+
+.auth-page {
+    margin: 0;
+    min-height: 100vh;
+    background: #231F20;
+    font-family: Arial, sans-serif;
+}
+
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.auth-box {
+    width: 100%;
+    max-width: 450px;
+    background: #FFFFFF;
+    padding: 40px;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+.auth-box h1 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #231F20;
+    text-align: center;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: #555555;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #231F20;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 2px solid #FAAF43;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #231F20;
+}
+
+.auth-button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    background: #FAAF43;
+    color: #231F20;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.auth-button:hover {
+    background: #231F20;
+    color: #FFFFFF;
+}
+
+.form-error {
+    padding: 12px;
+    margin-bottom: 20px;
+    background: #f8d7da;
+    color: #842029;
+    border-radius: 4px;
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.auth-link a {
+    color: #231F20;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.auth-link a:hover {
+    color: #FAAF43;
+}
+

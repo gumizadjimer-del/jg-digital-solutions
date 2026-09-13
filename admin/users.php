@@ -62,129 +62,161 @@ if (!$result) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Manage Users</title>
+    <title>Manage Users | JG Digital Solutions</title>
 
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="admin-page">
 
-<h1>Manage Users</h1>
+    <header class="admin-header">
 
-<p>
-    Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!
-</p>
+    <div class="admin-header-content">
 
-<a href="dashboard.php">Dashboard</a> |
-<a href="logout.php">Logout</a>
+        <img src="../image/Asset 1.png" class="logo" alt="JG Digital Solutions Logo">
 
-<hr>
+        <nav class="admin-nav">
+            <a href="dashboard.php">Dashboard</a>
+            <a href="users.php">Users</a>
+            <a href="messages.php">Messages</a>
+            <a href="service_requests.php"> Service Requests</a>
+            <a href="logout.php">Logout</a>
+        </nav>
 
-<h2>Registered Users</h2>
+    </div>
 
-<table border="1" cellpadding="10">
+</header>
 
-    <tr>
 
-        <th>ID</th>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Role</th>
-        <th>Registered</th>
-        <th>Action</th>
+    <main class="admin-container">
 
-    </tr>
+        <div class="admin-heading">
 
-    <?php if ($result->num_rows > 0): ?>
+            <h1>Manage Users</h1>
 
-        <?php while ($user = $result->fetch_assoc()): ?>
+            <p>
+                View and manage registered users.
+            </p>
 
-            <tr>
+        </div>
 
-                <td>
-                    <?php echo htmlspecialchars($user["id"]); ?>
-                </td>
 
-                <td>
-                    <?php echo htmlspecialchars($user["username"]); ?>
-                </td>
+        <div class="table-container">
 
-                <td>
-                    <?php echo htmlspecialchars($user["email"]); ?>
-                </td>
+            <table class="admin-table">
 
-                <td>
-                    <?php echo htmlspecialchars($user["role"]); ?>
-                </td>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Created</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
 
-                <td>
-                    <?php echo htmlspecialchars($user["created_at"]); ?>
-                </td>
+                <tbody>
 
-                <td>
+                    <?php while ($user = $result->fetch_assoc()): ?>
 
-                    <a href="edit_user.php?id=<?php echo $user["id"]; ?>">
-                        Edit
-                    </a>
+                        <tr>
 
-                    |
+                            <td>
+                                <?php echo htmlspecialchars($user["id"]); ?>
+                            </td>
 
-                    <?php if ($user["id"] != $_SESSION["user_id"]): ?>
+                            <td>
+                                <?php echo htmlspecialchars($user["username"]); ?>
+                            </td>
 
-                        <form method="POST" style="display:inline;">
+                            <td>
+                                <?php echo htmlspecialchars($user["email"]); ?>
+                            </td>
 
-                            <input
-                                type="hidden"
-                                name="user_id"
-                                value="<?php echo $user["id"]; ?>"
-                            >
+                            <td>
 
-                            <input
-                                type="hidden"
-                                name="csrf_token"
-                                value="<?php echo htmlspecialchars(getCsrfToken()); ?>"
-                            >
+                                <span class="role-badge
+                                    <?php echo $user["role"] === "admin"
+                                        ? "role-admin"
+                                        : "role-user"; ?>">
 
-                            <button
-                                type="submit"
-                                name="delete_user"
-                                onclick="return confirm('Are you sure you want to delete this user?');"
-                            >
-                                Delete
-                            </button>
+                                    <?php echo htmlspecialchars($user["role"]); ?>
 
-                        </form>
+                                </span>
 
-                    <?php else: ?>
+                            </td>
 
-                        Current Admin
+                            <td>
+                                <?php echo htmlspecialchars($user["created_at"]); ?>
+                            </td>
 
-                    <?php endif; ?>
+                            <td class="action-buttons">
 
-                </td>
+                                <a
+                                    href="edit_user.php?id=<?php echo $user["id"]; ?>"
+                                    class="edit-button"
+                                >
+                                    EDIT
+                                </a>
 
-            </tr>
 
-        <?php endwhile; ?>
+                                <?php if ($user["id"] != $_SESSION["user_id"]): ?>
 
-    <?php else: ?>
+                                    <form method="POST" class="delete-form"
+                                          onsubmit="return confirm('Are you sure you want to delete this user?');">
 
-        <tr>
+                                        <input
+                                            type="hidden"
+                                            name="delete_user"
+                                            value="1"
+                                        >
 
-            <td colspan="5">
-                No users found.
-            </td>
+                                        <input
+                                            type="hidden"
+                                            name="user_id"
+                                            value="<?php echo $user["id"]; ?>"
+                                        >
 
-        </tr>
+                                        <input
+                                            type="hidden"
+                                            name="csrf_token"
+                                            value="<?php echo htmlspecialchars(getCsrfToken()); ?>"
+                                        >
 
-    <?php endif; ?>
+                                        <button
+                                            type="submit"
+                                            class="delete-button"
+                                        >
+                                            DELETE
+                                        </button>
 
-</table>
+                                    </form>
+
+                                <?php endif; ?>
+
+                            </td>
+
+                        </tr>
+
+                    <?php endwhile; ?>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <a href="dashboard.php" class="back-button">
+            ← Back to Dashboard
+        </a>
+
+    </main>
 
 </body>
-
 </html>

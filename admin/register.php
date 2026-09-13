@@ -94,53 +94,97 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | JG Digital Solutions</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="auth-page">
 
-<h1>Create Account</h1>
+    <div class="auth-container">
 
-<?php if ($error !== ""): ?>
-    <p><?php echo htmlspecialchars($error); ?></p>
-<?php endif; ?>
+        <div class="auth-box">
 
-<?php if ($success !== ""): ?>
-    <p><?php echo htmlspecialchars($success); ?></p>
-<?php endif; ?>
+            <h1>Create Account</h1>
 
-<form method="POST">
+            <p class="auth-subtitle">
+                Register for a JG Digital Solutions account.
+            </p>
 
- <input
-        type="hidden"
-        name="csrf_token"
-        value="<?php echo htmlspecialchars(getCsrfToken()); ?>"
-    >
+            <?php if ($error !== ""): ?>
+                <div class="form-error">
+                    <?php echo htmlspecialchars($error); ?>
+                </div>
+            <?php endif; ?>
 
-    <label>Username</label>
-    <input type="text" name="username" minlength="3" maxlength="50" required>
+            <?php if ($success !== ""): ?>
+                <div class="form-success">
+                    <?php echo htmlspecialchars($success); ?>
+                </div>
+            <?php endif; ?>
 
-    <br><br>
+            <form method="POST">
 
-    <label>Email</label>
-    <input type="email" name="email" required>
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    value="<?php echo htmlspecialchars(getCsrfToken()); ?>"
+                >
 
-    <br><br>
+                <div class="form-group">
+                    <label>Username</label>
 
-    <label>Password</label>
-    <input type="password" name="password" minlenght="8" required>
+                    <input
+                        type="text"
+                        name="username"
+                        minlength="3"
+                        maxlength="50"
+                        required
+                    >
+                </div>
 
-    <br><br>
+                <div class="form-group">
+                    <label>Email</label>
 
-    <button type="submit">Register</button>
+                    <input
+                        type="email"
+                        name="email"
+                        required
+                    >
+                </div>
 
-</form>
+                <div class="form-group">
+                    <label>Password</label>
 
-<a href="login.php">Already have an account? Login</a>
+                    <input
+                        type="password"
+                        name="password"
+                        minlength="8"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="auth-button">
+                    REGISTER
+                </button>
+
+            </form>
+
+            <p class="auth-link">
+                Already have an account?
+                <a href="login.php">Login here</a>
+            </p>
+
+            <p class="auth-link">
+                <a href="../index.php">Back to Website</a>
+            </p>
+
+        </div>
+
+    </div>
 
 </body>
-
 </html>

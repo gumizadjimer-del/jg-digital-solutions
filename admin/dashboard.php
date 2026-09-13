@@ -26,64 +26,121 @@ if (!$result) {
 
 $messageCount = $result->fetch_assoc()["total"];
 
+$service_request_result = $conn->query(
+    "SELECT COUNT(*) AS total FROM service_requests"
+);
+
+$service_request_count = 0;
+
+if ($service_request_result) {
+
+    $service_request_data = $service_request_result->fetch_assoc();
+
+    $service_request_count = $service_request_data["total"];
+}
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | JG Digital Solutions</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="dashboard-page">
 
-<h1>Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h1>
+    <header class="admin-header">
 
+    <div class="admin-header-content">
 
-<p>You are successfully logged in.</p>
+        <img src="../image/Asset 1.png" class="logo" alt="JG Digital Solutions Logo">
 
-<p>
-    Email:
-    <?php echo htmlspecialchars($_SESSION["email"]); ?>
-</p>
+        <nav class="admin-nav">
+            <a href="dashboard.php">Dashboard</a>
+            <a href="users.php">Users</a>
+            <a href="messages.php">Messages</a>
+            <a href="service_requests.php"> Service Requests</a>
+            <a href="logout.php">Logout</a>
+        </nav>
 
-<p>
-    Role:
-    <?php echo htmlspecialchars($_SESSION["role"]); ?>
-</p>
+    </div>
 
-<hr>
-
-<h2>Administration</h2>
-
-
-<p>
-    <a href="users.php">Manage Users</a>
-</p>
-
-<h2>Users</h2>
-
-<p>
-    Total Registered Users:
-    <?php echo htmlspecialchars($userCount); ?>
-</p>
-
-<hr>
-<h2>Messages</h2>
-
-<p>
-    Total Messages:
-    <?php echo htmlspecialchars($messageCount); ?>
-</p>
-
-<a href="messages.php">View Messages</a>
-<hr>
+</header>
 
 
+    <main class="dashboard-container">
 
-<a href="logout.php">Logout</a>
+        <div class="dashboard-heading">
+            <h1>Admin Dashboard</h1>
+
+            <p>
+                Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>.
+            </p>
+        </div>
+
+
+        <div class="dashboard-cards">
+
+            <div class="dashboard-card">
+
+                <h2>Users</h2>
+
+                <div class="dashboard-number">
+                    <?php echo $userCount; ?>
+                </div>
+
+                <p>Registered users</p>
+
+                <a href="users.php" class="dashboard-button">
+                    MANAGE USERS
+                </a>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h2>Messages</h2>
+
+                <div class="dashboard-number">
+                    <?php echo $messageCount; ?>
+                </div>
+
+                <p>Contact messages</p>
+
+                <a href="messages.php" class="dashboard-button">
+                    VIEW MESSAGES
+                </a>
+
+            </div>
+
+            <div class="dashboard-card">
+
+                <h2>Service Requests</h2>
+
+                <div class="dashboard-number">
+                    <?php echo $service_request_count; ?>
+                </div>
+
+                <p>
+                    Service requests submitted by users.
+                </p>
+
+                <a href="service_requests.php" class="dashboard-button">
+                    VIEW REQUESTS
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </main>
 
 </body>
-
 </html>

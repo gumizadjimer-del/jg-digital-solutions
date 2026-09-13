@@ -58,115 +58,143 @@ if (!$result) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-    <title>Messages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Messages | JG Digital Solutions</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="admin-page">
 
-<h1>Contact Messages</h1>
+    <header class="admin-header">
 
-<p>
-    Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!
-</p>
+    <div class="admin-header-content">
 
-<a href="dashboard.php">Dashboard</a> |
-<a href="users.php">Manage Users</a> |
-<a href="logout.php">Logout</a>
+        <img src="../image/Asset 1.png" class="logo" alt="JG Digital Solutions Logo">
 
-<hr>
+        <nav class="admin-nav">
+            <a href="dashboard.php">Dashboard</a>
+            <a href="users.php">Users</a>
+            <a href="messages.php">Messages</a>
+            <a href="service_requests.php"> Service Requests</a>
+            <a href="logout.php">Logout</a>
+        </nav>
 
-<h2>Customer Messages</h2>
+    </div>
 
-<table border="1" cellpadding="10">
+</header>
 
-    <tr>
 
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Message</th>
-        <th>Date</th>
-        <th>Action</th>
+    <main class="admin-container">
 
-    </tr>
+        <div class="admin-heading">
 
-    <?php if ($result->num_rows > 0): ?>
+            <h1>Contact Messages</h1>
 
-        <?php while ($message = $result->fetch_assoc()): ?>
+            <p>
+                View messages submitted through the website.
+            </p>
 
-            <tr>
+        </div>
 
-                <td>
-                    <?php echo htmlspecialchars($message["id"]); ?>
-                </td>
 
-                <td>
-                    <?php echo htmlspecialchars($message["name"]); ?>
-                </td>
+        <div class="table-container">
 
-                <td>
-                    <?php echo htmlspecialchars($message["email"]); ?>
-                </td>
+            <table class="admin-table messages-table">
 
-                <td>
-                    <?php echo htmlspecialchars($message["message"]); ?>
-                </td>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
 
-                <td>
-                    <?php echo htmlspecialchars($message["created_at"]); ?>
-                </td>
+                <tbody>
 
-                <td>
+                    <?php while ($message = $result->fetch_assoc()): ?>
 
-                    <form method="POST" style="display:inline;">
+                        <tr>
 
-                        <input
-                            type="hidden"
-                            name="message_id"
-                            value="<?php echo $message["id"]; ?>"
-                        >
+                            <td>
+                                <?php echo htmlspecialchars($message["id"]); ?>
+                            </td>
 
-                        <input
-                            type="hidden"
-                            name="csrf_token"
-                            value="<?php echo htmlspecialchars(getCsrfToken()); ?>"
-                        >
+                            <td>
+                                <?php echo htmlspecialchars($message["name"]); ?>
+                            </td>
 
-                        <button
-                            type="submit"
-                            name="delete_message"
-                            onclick="return confirm('Are you sure you want to delete this message?');"
-                        >
-                            Delete
-                        </button>
+                            <td>
+                                <?php echo htmlspecialchars($message["email"]); ?>
+                            </td>
 
-                    </form>
+                            <td class="message-cell">
+                                <?php echo nl2br(htmlspecialchars($message["message"])); ?>
+                            </td>
 
-                </td>
+                            <td>
+                                <?php echo htmlspecialchars($message["created_at"]); ?>
+                            </td>
 
-            </tr>
+                            <td>
 
-        <?php endwhile; ?>
+                                <form
+                                    method="POST"
+                                    class="delete-form"
+                                    onsubmit="return confirm('Are you sure you want to delete this message?');"
+                                >
 
-    <?php else: ?>
+                                    <input
+                                        type="hidden"
+                                        name="delete_message"
+                                        value="1"
+                                    >
 
-        <tr>
+                                    <input
+                                        type="hidden"
+                                        name="message_id"
+                                        value="<?php echo $message["id"]; ?>"
+                                    >
 
-            <td colspan="5">
-                No messages found.
-            </td>
+                                    <input
+                                        type="hidden"
+                                        name="csrf_token"
+                                        value="<?php echo htmlspecialchars(getCsrfToken()); ?>"
+                                    >
 
-        </tr>
+                                    <button
+                                        type="submit"
+                                        class="delete-button"
+                                    >
+                                        DELETE
+                                    </button>
 
-    <?php endif; ?>
+                                </form>
 
-</table>
+                            </td>
+
+                        </tr>
+
+                    <?php endwhile; ?>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <a href="dashboard.php" class="back-button">
+            ← Back to Dashboard
+        </a>
+
+    </main>
 
 </body>
-
 </html>

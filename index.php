@@ -69,9 +69,8 @@ require_once "config/security.php";
 
         </div>
 
-        <!-- IMAGE PLACEHOLDER -->
         <div class="hero-image">
-            <img src="YOUR-IMAGE-HERE.png" alt="JG Digital Solutions">
+            <img src="image\1x\Asset 1.png" alt="JG Digital Solutions">
         </div>
 
     </div>
@@ -86,7 +85,7 @@ require_once "config/security.php";
     <div class="services-grid">
 
         <div class="service-card">
-            <img src="YOUR-WEB-DEVELOPMENT-ICON.png" alt="Web Development">
+            <img src="image\1x\Asset 3.png" alt="Web Development">
             <h3>WEB DEVELOPMENT</h3>
             <p>
                 We build modern, responsive websites
@@ -95,7 +94,7 @@ require_once "config/security.php";
         </div>
 
         <div class="service-card">
-            <img src="YOUR-SOFTWARE-DEVELOPMENT-ICON.png" alt="Software Development">
+            <img src="image\1x\Asset 4.png" alt="Software Development">
             <h3>SOFTWARE DEVELOPMENT</h3>
             <p>
                 We develop custom software solutions
@@ -104,7 +103,7 @@ require_once "config/security.php";
         </div>
 
         <div class="service-card">
-            <img src="YOUR-GRAPHIC-DESIGN-ICON.png" alt="Graphic and Brand Design">
+            <img src="image\1x\Asset 5.png" alt="Graphic and Brand Design">
             <h3>GRAPHIC &amp; BRAND DESIGN</h3>
             <p>
                 We design logos, branding, and visuals
@@ -113,7 +112,7 @@ require_once "config/security.php";
         </div>
 
         <div class="service-card">
-            <img src="YOUR-DATA-SIMULATION-ICON.png" alt="Data and Simulation">
+            <img src="image\1x\Asset 6.png" alt="Data and Simulation">
             <h3>DATA &amp; SIMULATION</h3>
             <p>
                 We create data-driven models and simulations
@@ -128,7 +127,7 @@ require_once "config/security.php";
     <div class="service-values">
 
         <div class="value-item">
-            <img src="YOUR-CREATIVE-ICON.png" alt="Creative Approach">
+            <img src="image\1x\Asset 7.png" alt="Creative Approach">
             <h3>CREATIVE APPROACH</h3>
             <p>
                 We combine creativity and technology to
@@ -137,7 +136,7 @@ require_once "config/security.php";
         </div>
 
         <div class="value-item">
-            <img src="YOUR-RELIABLE-ICON.png" alt="Reliable and Professional">
+            <img src="image\1x\Asset 8.png" alt="Reliable and Professional">
             <h3>RELIABLE &amp; PROFESSIONAL</h3>
             <p>
                 We deliver quality work, communicate clearly,
@@ -146,7 +145,7 @@ require_once "config/security.php";
         </div>
 
         <div class="value-item">
-            <img src="YOUR-INNOVATIVE-ICON.png" alt="Innovative Solutions">
+            <img src="image\1x\Asset 9.png" alt="Innovative Solutions">
             <h3>INNOVATIVE SOLUTIONS</h3>
             <p>
                 We use modern tools and ideas to help your
@@ -171,7 +170,7 @@ require_once "config/security.php";
         <div class="work-card">
 
             <div class="work-image">
-                <img src="YOUR-GRAPHIC-DESIGN-IMAGE.png"
+                <img src="image\1x\1x\Asset 10.png"
                      alt="Graphic Design Project">
             </div>
 
@@ -189,7 +188,7 @@ require_once "config/security.php";
         <div class="work-card">
 
             <div class="work-image">
-                <img src="YOUR-SUPERMARKET-SIMULATION-IMAGE.png"
+                <img src="image\1x\1x\Asset 11.png"
                      alt="Supermarket Simulation Project">
             </div>
 
@@ -208,7 +207,7 @@ require_once "config/security.php";
         <div class="work-card">
 
             <div class="work-image">
-                <img src="YOUR-STOCK-MARKET-IMAGE.png"
+                <img src="image\1x\1x\Asset 12.png"
                      alt="Stock Market Simulation Project">
             </div>
 
@@ -222,13 +221,6 @@ require_once "config/security.php";
         </div>
 
     </div>
-
-
-    <!-- SHOW MORE -->
-    <a href="#" class="show-more">
-        SHOW MORE
-        <span class="show-more-arrow">⌄</span>
-    </a>
 
 </section>
 
@@ -261,7 +253,7 @@ require_once "config/security.php";
             <label for="contact-message">MESSAGE</label>
             <textarea id="contact-message" name="message" id="contact-message" maxlength="2000" required></textarea>
 
-            <button type="submit">SEND MESSAGE</button>
+            <button type="submit" id ="send_message">SEND MESSAGE</button>
 
         </form>
 
@@ -280,17 +272,17 @@ require_once "config/security.php";
             </h3>
 
             <div class="contact-detail">
-                <img src="YOUR-EMAIL-ICON.png" alt="Email">
+                <img src="image\1x\1x\Asset 13.png" alt="Email">
                 <span>JGdigitalsolution@gmail.com</span>
             </div>
 
             <div class="contact-detail">
-                <img src="YOUR-PHONE-ICON.png" alt="Phone">
+                <img src="image\1x\1x\Asset 14.png" alt="Phone">
                 <span>+63 939 834 4760</span>
             </div>
 
             <div class="contact-detail">
-                <img src="YOUR-LOCATION-ICON.png" alt="Location">
+                <img src="image\1x\1x\Asset 15.png" alt="Location">
                 <span>
                     Dumaguete City, Negros Oriental, Philippines<br>
                     Philippines
@@ -316,9 +308,9 @@ require_once "config/security.php";
             <p>© 2026 JG Digital Solutions. All rights reserved.</p>
 
             <div class="footer-links">
-                <a href="#">Facebook</a>
-                <a href="#">Instagram</a>
-                <a href="#">Email</a>
+                <a href="Placeholder.php">Facebook</a>
+                <a href="Placeholder.php">Instagram</a>
+                <a href="Placeholder.php">Email</a>
             </div>
 
         </div>

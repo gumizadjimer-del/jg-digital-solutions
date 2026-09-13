@@ -62,7 +62,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 
 
                 // Login successful
-                header("Location: dashboard.php");
+                if ($_SESSION["role"] === "admin") {
+
+                    header("Location: dashboard.php");
+
+                } else {
+
+                    header("Location: ../user/dashboard.php");
+
+                }
+
                 exit;
 
             } else {
@@ -87,56 +96,83 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | JG Digital Solutions</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="auth-page">
+    <div class="auth-container">
 
-<h1>Login</h1>
+        <div class="auth-box">
 
-<?php if ($error !== ""): ?>
+            <h1>Login</h1>
 
-    <p><?php echo htmlspecialchars($error); ?></p>
+            <p class="auth-subtitle">
+                Login to your JG Digital Solutions account.
+            </p>
 
-<?php endif; ?>
+            <?php if ($error !== ""): ?>
 
-<form method="POST">
+                <div class="form-error">
+                    <?php echo htmlspecialchars($error); ?>
+                </div>
 
-    <input
-    type="hidden"
-    name="csrf_token"
-    value="<?php echo htmlspecialchars(getCsrfToken()); ?>"
->
+            <?php endif; ?>
 
-    <label>Email</label>
-    <br>
+            <form method="POST">
 
-    <input
-        type="email"
-        name="email"
-        required
-    >
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    value="<?php echo htmlspecialchars(getCsrfToken()); ?>"
+                >
 
-    <br><br>
+                <div class="form-group">
 
-    <label>Password</label>
-    <br>
+                    <label>Email</label>
 
-    <input
-        type="password"
-        name="password"
-        required
-    >
+                    <input
+                        type="email"
+                        name="email"
+                        required
+                    >
 
-    <br><br>
+                </div>
 
-    <button type="submit">Login</button>
+                <div class="form-group">
 
-</form>
+                    <label>Password</label>
 
-<br>
+                    <input
+                        type="password"
+                        name="password"
+                        required
+                    >
 
-<a href="register.php">Create an account</a>
+                </div>
+
+                <button type="submit" class="auth-button">
+                    LOGIN
+                </button>
+
+            </form>
+
+            <p class="auth-link">
+                Don't have an account?
+                <a href="register.php">Create an account</a>
+            </p>
+
+            <p class="auth-link">
+                <a href="../index.php">Back to Website</a>
+            </p>
+
+        </div>
+
+    </div>
 
 </body>
 

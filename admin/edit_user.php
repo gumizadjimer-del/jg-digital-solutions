@@ -141,110 +141,121 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Edit User</title>
+    <title>Edit User | JG Digital Solutions</title>
 
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="auth-page">
 
-<h1>Edit User</h1>
+    <div class="auth-container">
 
-<a href="dashboard.php">Dashboard</a> |
-<a href="users.php">Manage Users</a> |
-<a href="logout.php">Logout</a>
+        <div class="auth-box">
 
-<hr>
+            <h1>Edit User</h1>
 
-<?php if ($error !== ""): ?>
+            <p class="auth-subtitle">
+                Update the user's account information.
+            </p>
 
-    <p>
-        <?php echo htmlspecialchars($error); ?>
-    </p>
+            <?php if ($error !== ""): ?>
+                <div class="form-error">
+                    <?php echo htmlspecialchars($error); ?>
+                </div>
+            <?php endif; ?>
 
-<?php endif; ?>
-
-
-<?php if ($success !== ""): ?>
-
-    <p>
-        <?php echo htmlspecialchars($success); ?>
-    </p>
-
-<?php endif; ?>
+            <?php if ($success !== ""): ?>
+                <div class="form-success">
+                    <?php echo htmlspecialchars($success); ?>
+                </div>
+            <?php endif; ?>
 
 
-<form method="POST">
+            <form method="POST">
 
-    <input
-    type="hidden"
-    name="csrf_token"
-    value="<?php echo htmlspecialchars(getCsrfToken()); ?>"
->
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    value="<?php echo htmlspecialchars(getCsrfToken()); ?>"
+                >
 
-    <label>Username</label>
+                <div class="form-group">
 
-    <br>
+                    <label>Username</label>
 
-    <input
-        type="text"
-        name="username"
-        value="<?php echo htmlspecialchars($user["username"]); ?>"
-        required
-    >
+                    <input
+                        type="text"
+                        name="username"
+                        minlength="3"
+                        maxlength="50"
+                        value="<?php echo htmlspecialchars($user["username"]); ?>"
+                        required
+                    >
 
-    <br><br>
-
-
-    <label>Email</label>
-
-    <br>
-
-    <input
-        type="email"
-        name="email"
-        value="<?php echo htmlspecialchars($user["email"]); ?>"
-        required
-    >
-
-    <br><br>
+                </div>
 
 
-    <label>Role</label>
+                <div class="form-group">
 
-    <br>
+                    <label>Email</label>
 
-    <select name="role" required>
+                    <input
+                        type="email"
+                        name="email"
+                        value="<?php echo htmlspecialchars($user["email"]); ?>"
+                        required
+                    >
 
-        <option
-            value="user"
-            <?php if ($user["role"] === "user") echo "selected"; ?>
-        >
-            User
-        </option>
-
-        <option
-            value="admin"
-            <?php if ($user["role"] === "admin") echo "selected"; ?>
-        >
-            admin
-        </option>
-
-    </select>
-
-    <br><br>
+                </div>
 
 
-    <button type="submit">
-        Update User
-    </button>
+                <div class="form-group">
 
-</form>
+                    <label>Role</label>
+
+                    <select name="role" required>
+
+                        <option
+                            value="user"
+                            <?php echo $user["role"] === "user" ? "selected" : ""; ?>
+                        >
+                            User
+                        </option>
+
+                        <option
+                            value="admin"
+                            <?php echo $user["role"] === "admin" ? "selected" : ""; ?>
+                        >
+                            Admin
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button type="submit" class="auth-button">
+                    SAVE CHANGES
+                </button>
+
+            </form>
+
+
+            <p class="auth-link">
+                <a href="users.php">← Back to Users</a>
+            </p>
+
+            <p class="auth-link">
+                <a href="dashboard.php">Back to Dashboard</a>
+            </p>
+
+        </div>
+
+    </div>
 
 </body>
-
 </html>
