@@ -4,6 +4,8 @@ session_start();
 
 require_once "config/security.php";
 
+$csrfToken = getCsrfToken();
+
 ?>
 
 <!DOCTYPE html>

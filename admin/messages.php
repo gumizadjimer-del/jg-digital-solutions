@@ -8,7 +8,7 @@ require_once "../config/admin_auth.php";
 
 requireAdmin();
 
-// Check if user is logged in
+$csrfToken = getCsrfToken();
 
 
 // Delete message

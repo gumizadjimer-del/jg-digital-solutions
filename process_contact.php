@@ -1,7 +1,12 @@
 <?php
 
+session_start();
+
 require_once "config/database.php";
 require_once "config/security.php";
+
+$csrfToken = getCsrfToken();
+
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     header("Location: index.php");
